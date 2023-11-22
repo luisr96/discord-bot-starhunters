@@ -37,7 +37,7 @@ function run({ interaction }) {
   const tier = interaction.options.getString("tier");
   const location = interaction.options.getString("location");
   logger.info(
-    `W${world} T${tier} STAR | ${location} | BY: ${interaction.user.username}`
+    `W${world} | T${tier} | ${location} | BY: ${interaction.user.username}`
   );
   interaction.reply("Star recorded.");
 }
