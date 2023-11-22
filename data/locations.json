@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Dwarven Mine northern entrance",
+    "value": "Dwarven Mine northern entrance"
+  },
+  {
+    "name": "Mining Guild entrance",
+    "value": "Mining Guild entrance"
+  },
+  {
+    "name": "Crafting Guild",
+    "value": "cg"
+  },
+  {
+    "name": "Rimmington mine",
+    "value": "rim"
+  },
+  {
+    "name": "South Crandor mine",
+    "value": "South Crandor mine"
+  },
+  {
+    "name": "North Crandor mine",
+    "value": "North Crandor mine"
+  },
+  {
+    "name": "Corsair Cove",
+    "value": "Corsair Cove"
+  },
+  {
+    "name": "Corsair Cove Resource Area",
+    "value": "Corsair Cove Resource Area"
+  },
+  {
+    "name": "Al Kharid mine",
+    "value": "akm"
+  },
+  {
+    "name": "Al-Kharid Bank",
+    "value": "akb"
+  },
+  {
+    "name": "PVP Arena",
+    "value": "pvp"
+  },
+  {
+    "name": "East Lumbridge Swamp mine",
+    "value": "lse"
+  },
+  {
+    "name": "West Lumbridge Swamp mine",
+    "value": "lsw"
+  },
+  {
+    "name": "Draynor Village",
+    "value": "draynor"
+  },
+  {
+    "name": "Varrock East bank",
+    "value": "veb"
+  },
+  {
+    "name": "South-east Varrock mine",
+    "value": "vse"
+  },
+  {
+    "name": "South-west Varrock mine ",
+    "value": "vsw"
+  }
+]
