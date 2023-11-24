@@ -4,8 +4,9 @@ const logger = pino({
     target: "pino-pretty",
   },
 });
-const locations = require("../data/locations.json");
 const { SlashCommandBuilder } = require("discord.js");
+const locations = require("../data/locations.json");
+const db = require("../utils/db.js");
 
 const data = new SlashCommandBuilder()
   .setName("manual-call")
@@ -32,13 +33,30 @@ locations.forEach((loc) => {
   data.options[2].addChoices(loc);
 });
 
-function run({ interaction }) {
+async function run({ interaction }) {
   const world = interaction.options.getString("world");
   const tier = interaction.options.getString("tier");
   const location = interaction.options.getString("location");
-  logger.info(
-    `W${world} | T${tier} | ${location} | BY: ${interaction.user.username}`
-  );
-  interaction.reply("Star recorded.");
+
+  const starToSave = {
+    world,
+    tier,
+    location,
+    foundAt: new Date(),
+  };
+
+  const starsCollection = db.getStarsCollection();
+
+  try {
+    await starsCollection.insertOne(starToSave);
+    interaction.reply(
+      `Successfully added the star: W${world} T${tier} ${location}`
+    );
+    logger.info(
+      `W${world} | T${tier} | ${location} | BY: ${interaction.user.username}`
+    );
+  } catch (error) {
+    interaction.reply("Error: Could not insert the star");
+  }
 }
 module.exports = { data, run };

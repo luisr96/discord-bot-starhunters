@@ -1,10 +1,9 @@
 const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
 const { CommandKit } = require("commandkit");
-const fs = require("fs");
-const { join } = require("path");
 const config = require("./config.json");
 require("dotenv").config();
 const path = require("node:path");
+const { connectToMongoDB } = require("./utils/db.js");
 
 const client = new Client({
   intents: [
@@ -30,4 +29,12 @@ new CommandKit({
   bulkRegister: true,
 });
 
-client.login(process.env.TOKEN);
+(async () => {
+  try {
+    await connectToMongoDB();
+    console.log("MongoDB connection established");
+    client.login(process.env.TOKEN);
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
+  }
+})();
