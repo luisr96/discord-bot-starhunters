@@ -4,6 +4,12 @@ const config = require("./config.json");
 require("dotenv").config();
 const path = require("node:path");
 const { connectToMongoDB } = require("./utils/db.js");
+const pino = require("pino");
+const logger = pino({
+  transport: {
+    target: "pino-pretty",
+  },
+});
 
 const client = new Client({
   intents: [
@@ -27,6 +33,13 @@ new CommandKit({
   devRoleIds: [],
   skipBuiltInValidations: true,
   bulkRegister: true,
+});
+
+client.once("ready", () => {
+  client.user.setPresence({
+    activities: [{ name: `stars | /help`, type: ActivityType.Watching }],
+  });
+  logger.info("Bot is online");
 });
 
 (async () => {
