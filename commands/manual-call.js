@@ -38,9 +38,9 @@ locations.forEach((loc) => {
 });
 
 async function run({ interaction }) {
-  const world = interaction.options.getString("world");
-  const tier = interaction.options.getString("tier");
-  const location = interaction.options.getString("location");
+  const world = interaction.options.get("world").value;
+  const tier = interaction.options.get("tier").value;
+  const location = interaction.options.get("location").value;
 
   const starToSave = {
     world,
@@ -54,9 +54,7 @@ async function run({ interaction }) {
 
   try {
     await starsCollection.insertOne(starToSave);
-    interaction.reply(
-      `Successfully added the star: W${world} T${tier} ${location}`
-    );
+    interaction.reply(`New active star: W${world} T${tier} ${location}`);
     logger.info(
       `W${world} | T${tier} | ${location} | BY: ${interaction.user.username}`
     );
