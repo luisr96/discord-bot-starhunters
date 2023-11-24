@@ -8,12 +8,12 @@
     "value": "Mining Guild entrance"
   },
   {
-    "name": "Crafting Guild",
-    "value": "cg"
+    "name": "Crafting Guild (cg)",
+    "value": "Crafting Guild (cg)"
   },
   {
-    "name": "Rimmington mine",
-    "value": "rim"
+    "name": "Rimmington mine (rim)",
+    "value": "Rimmington mine (rim)"
   },
   {
     "name": "South Crandor mine",
@@ -32,39 +32,39 @@
     "value": "Corsair Cove Resource Area"
   },
   {
-    "name": "Al Kharid mine",
-    "value": "akm"
+    "name": "Al Kharid mine (akm)",
+    "value": "Al Kharid mine (akm)"
   },
   {
-    "name": "Al-Kharid Bank",
-    "value": "akb"
+    "name": "Al Kharid bank (akb)",
+    "value": "Al Kharid bank (akb)"
   },
   {
-    "name": "PVP Arena",
-    "value": "pvp"
+    "name": "Emir's Arena (pvp)",
+    "value": "Emir's Arena (pvp)"
   },
   {
-    "name": "East Lumbridge Swamp mine",
-    "value": "lse"
+    "name": "East Lumbridge Swamp mine (lse)",
+    "value": "East Lumbridge Swamp mine (lse)"
   },
   {
-    "name": "West Lumbridge Swamp mine",
-    "value": "lsw"
+    "name": "West Lumbridge Swamp mine (lsw)",
+    "value": "West Lumbridge Swamp mine (lsw)"
   },
   {
     "name": "Draynor Village",
-    "value": "draynor"
+    "value": "Draynor Village"
   },
   {
-    "name": "Varrock East bank",
-    "value": "veb"
+    "name": "Varrock East bank (veb)",
+    "value": "Varrock East bank (veb)"
   },
   {
-    "name": "South-east Varrock mine",
-    "value": "vse"
+    "name": "South-east Varrock mine (vse)",
+    "value": "South-east Varrock mine (vse)"
   },
   {
-    "name": "South-west Varrock mine ",
-    "value": "vsw"
+    "name": "South-west Varrock mine (vsw)",
+    "value": "South-west Varrock mine (vsw)"
   }
 ]

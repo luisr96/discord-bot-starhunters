@@ -19,6 +19,7 @@
   "homepage": "https://github.com/luisr96/discord-bot-starhunters#readme",
   "dependencies": {
     "commandkit": "^0.1.6-dev.20231113071041",
+    "date-fns": "^2.30.0",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "mongodb": "^6.3.0",

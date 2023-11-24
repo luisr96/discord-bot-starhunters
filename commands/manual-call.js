@@ -10,7 +10,7 @@ const db = require("../utils/db.js");
 
 const data = new SlashCommandBuilder()
   .setName("manual-call")
-  .setDescription("Call a star manually")
+  .setDescription("Call a star manually. This releases the star")
   .addStringOption((option) =>
     option
       .setName("world")
@@ -43,6 +43,7 @@ async function run({ interaction }) {
     tier,
     location,
     foundAt: new Date(),
+    released: true,
   };
 
   const starsCollection = db.getStarsCollection();
