@@ -11,17 +11,21 @@ const db = require("../utils/db.js");
 const data = new SlashCommandBuilder()
   .setName("manual-call")
   .setDescription("Call a star manually. This releases the star")
-  .addStringOption((option) =>
+  .addIntegerOption((option) =>
     option
       .setName("world")
       .setDescription("The world number of the star")
       .setRequired(true)
+      .setMinValue(301)
+      .setMaxValue(595)
   )
-  .addStringOption((option) =>
+  .addIntegerOption((option) =>
     option
       .setName("tier")
       .setDescription("The tier of the star")
       .setRequired(true)
+      .setMinValue(1)
+      .setMaxValue(9)
   )
   .addStringOption((option) =>
     option
