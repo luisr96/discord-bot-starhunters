@@ -1,7 +1,7 @@
 [
   {
-    "name": "Dwarven Mine northern entrance",
-    "value": "Dwarven Mine northern entrance"
+    "name": "Dwarven Mine northern entrance (ice)",
+    "value": "Dwarven Mine northern entrance (ice)"
   },
   {
     "name": "Mining Guild entrance",
@@ -40,8 +40,8 @@
     "value": "Al Kharid bank (akb)"
   },
   {
-    "name": "Emir's Arena (pvp)",
-    "value": "Emir's Arena (pvp)"
+    "name": "Emir's Arena (pvp / mta / apa)",
+    "value": "Emir's Arena (pvp / mta / apa)"
   },
   {
     "name": "East Lumbridge Swamp mine (lse)",

@@ -7,6 +7,8 @@ const logger = pino({
 const { SlashCommandBuilder } = require("discord.js");
 const locations = require("../data/locations.json");
 const db = require("../utils/db.js");
+const { saveStar } = require("../utils/save-star.js");
+const ActiveStar = require("../schemas/ActiveStar.js");
 
 const data = new SlashCommandBuilder()
   .setName("manual-call")
@@ -42,24 +44,10 @@ async function run({ interaction }) {
   const tier = interaction.options.get("tier").value;
   const location = interaction.options.get("location").value;
 
-  const starToSave = {
-    world,
-    tier,
-    location,
-    foundAt: new Date(),
-    released: true,
-  };
+  await interaction.deferReply();
 
-  const starsCollection = db.getStarsCollection();
+  const result = await saveStar(new ActiveStar(world, tier, location));
 
-  try {
-    await starsCollection.insertOne(starToSave);
-    interaction.reply(`New active star: W${world} T${tier} ${location}`);
-    logger.info(
-      `W${world} | T${tier} | ${location} | BY: ${interaction.user.username}`
-    );
-  } catch (error) {
-    interaction.reply("Error: Could not insert the star");
-  }
+  interaction.editReply(result);
 }
 module.exports = { data, run };
