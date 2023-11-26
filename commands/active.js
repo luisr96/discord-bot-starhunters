@@ -33,13 +33,13 @@ async function run({ interaction }) {
 
       releasedStars.forEach((star, index) => {
         console.log(star.foundAt);
-        const parsedDate = new Date(star.foundAt);
+        const foundDate = new Date(star.foundAt);
 
         embed.addFields({
           name: `⭐ ${star.location}`,
           value: `World: ${star.world}
                   Tier: ${star.tier}
-                  Called ${formatDistanceToNow(parsedDate, {
+                  Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
                   })}`,
         });

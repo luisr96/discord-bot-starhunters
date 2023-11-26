@@ -13,6 +13,11 @@ module.exports = {
       `
   = COMMANDS =
   /manual-call :: Manually call a star
+  /active      :: Show list of active stars
+  /release     :: Release an auto-found star
+  /poof        :: Call a star as disappeared
+
+
   /info        :: See bot metadata
    `
     );
