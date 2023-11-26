@@ -22,7 +22,7 @@ async function run({ interaction }) {
     await interaction.deferReply();
 
     const releasedStars = await starsCollection
-      .find({ released: true })
+      .find({ calledAt: { $exists: true, $ne: null } })
       .sort({ foundAt: 1 })
       .toArray();
 
