@@ -4,6 +4,7 @@ const logger = pino({
     target: "pino-pretty",
   },
 });
+const config = require("../../config.json");
 const db = require("../../utils/db.js");
 const { getStarInWorld } = require("../../utils/get-star-in-world.js");
 const { saveStar } = require("../../utils/save-star.js");
@@ -14,7 +15,7 @@ const { updateStarTier } = require("../../utils/update-tier.js");
 module.exports = async (interaction, client) => {
   // the webhook sends in a "Star Found:" format
   // we need to filter for those
-  if (interaction.webhookId) {
+  if (interaction.webhookId === config.WEBHOOK_ID) {
     if (!interaction.content.startsWith("Star Found:")) {
       // delete all other messages that the webhook generates
       interaction.delete().catch((error) => {
