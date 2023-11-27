@@ -11,8 +11,8 @@ const { saveStar } = require("../utils/save-star.js");
 const ActiveStar = require("../schemas/ActiveStar.js");
 
 const data = new SlashCommandBuilder()
-  .setName("manual-call")
-  .setDescription("Call a star manually. This releases the star")
+  .setName("call")
+  .setDescription("Call a star. This releases it to be viewed in /active")
   .addIntegerOption((option) =>
     option
       .setName("world")

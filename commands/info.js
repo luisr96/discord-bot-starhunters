@@ -20,7 +20,6 @@ module.exports = {
     .reduce((a, b) => a + b)
     .toLocaleString()}
   • Servers    :: ${client.guilds.cache.size.toLocaleString()}
-  • Channels   :: ${client.channels.cache.size.toLocaleString()}
   • Discord.js :: v${version}
   • Node       :: ${process.version}`
     );

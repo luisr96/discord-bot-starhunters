@@ -52,4 +52,4 @@ async function run({ interaction }) {
   }
 }
 
-module.exports = { data, run, options: { devOnly: true } };
+module.exports = { data, run };

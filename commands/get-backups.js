@@ -51,4 +51,4 @@ async function run({ interaction }) {
     interaction.followUp("Error: Could not get active stars");
   }
 }
-module.exports = { data, run, options: { devOnly: true } };
+module.exports = { data, run };

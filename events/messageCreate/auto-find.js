@@ -15,7 +15,7 @@ const { updateStarTier } = require("../../utils/update-tier.js");
 module.exports = async (interaction, client) => {
   // the webhook sends in a "Star Found:" format
   // we need to filter for those
-  if (interaction.webhookId === config.WEBHOOK_ID) {
+  if (interaction.author.bot && interaction.author.username == "Starcaller") {
     if (!interaction.content.startsWith("Star Found:")) {
       // delete all other messages that the webhook generates
       interaction.delete().catch((error) => {

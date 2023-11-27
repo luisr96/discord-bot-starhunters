@@ -37,7 +37,7 @@ async function run({ interaction }) {
       interaction.reply(`W${world} star released. It's now /active`);
     } else {
       interaction.reply(
-        `Star on world ${world} was not found or was already released`
+        `Star on W${world} was not found or was already released`
       );
     }
   } catch (error) {
@@ -45,4 +45,4 @@ async function run({ interaction }) {
   }
 }
 
-module.exports = { data, run, options: { devOnly: true } };
+module.exports = { data, run };

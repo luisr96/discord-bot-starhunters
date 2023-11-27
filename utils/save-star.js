@@ -25,7 +25,7 @@ saveStar = async (starToSave) => {
       { $set: starToSave },
       { upsert: true }
     );
-    message = `New active star: W${starToSave.world} T${starToSave.tier} ${starToSave.location}`;
+    message = `New */active* star: W${starToSave.world} T${starToSave.tier} ${starToSave.location}`;
   } catch (error) {
     console.error(error);
     message = "Error: Could not insert the star";
