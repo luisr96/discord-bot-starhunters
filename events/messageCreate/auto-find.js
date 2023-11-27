@@ -12,8 +12,15 @@ const { getStarIsCalled } = require("../../utils/get-star-is-called.js");
 const { updateStarTier } = require("../../utils/update-tier.js");
 
 module.exports = async (interaction, client) => {
-  if (interaction.content.startsWith("Star Found:")) {
-    if (interaction.author.bot) {
+  // the webhook sends in a "Star Found:" format
+  // we need to filter for those
+  if (interaction.webhookId) {
+    if (!interaction.content.startsWith("Star Found:")) {
+      // delete all other messages that the webhook generates
+      interaction.delete().catch((error) => {
+        console.error("Error deleting message:", error);
+      });
+    } else {
       // remove extra parts of the string
       let processedMessage = interaction.content.replace(
         /Star Found: | - f2p/g,
@@ -33,7 +40,7 @@ module.exports = async (interaction, client) => {
 
       try {
         const transaction = await saveStar(new Star(world, tier, location));
-        await interaction.reply(`AUTO-CALL: W${world} T${tier} ${location}`);
+        await interaction.reply(`AUTO-FOUND: W${world} T${tier} ${location}`);
       } catch (error) {
         console.error(error);
         await interaction.reply("Error");
