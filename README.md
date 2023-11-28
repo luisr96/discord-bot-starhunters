@@ -21,8 +21,8 @@ Starhelper is a Discord bot created for efficient tracking, organization, and ma
 ### Misc
 `/info`           See bot metadata
 
-## Usage Examples
-`/active`
+## Example Usage
+
 
 
 ## Contributing
