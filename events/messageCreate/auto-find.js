@@ -4,13 +4,9 @@ const logger = pino({
     target: "pino-pretty",
   },
 });
-const config = require("../../config.json");
-const db = require("../../utils/db.js");
-const { getStarInWorld } = require("../../utils/get-star-in-world.js");
 const { saveStar } = require("../../utils/save-star.js");
 const Star = require("../../schemas/Star.js");
 const { getStarIsCalled } = require("../../utils/get-star-is-called.js");
-const { updateStarTier } = require("../../utils/update-tier.js");
 
 module.exports = async (interaction, client) => {
   // the webhook sends in a "Star Found:" format
@@ -42,6 +38,7 @@ module.exports = async (interaction, client) => {
       try {
         const transaction = await saveStar(new Star(world, tier, location));
         await interaction.reply(`AUTO-FOUND: W${world} T${tier} ${location}`);
+        logger.info("auto-found");
       } catch (error) {
         console.error(error);
         await interaction.reply("Error");

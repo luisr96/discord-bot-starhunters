@@ -6,7 +6,6 @@ const logger = pino({
 });
 const { SlashCommandBuilder } = require("discord.js");
 const locations = require("../data/locations.json");
-const db = require("../utils/db.js");
 const { saveStar } = require("../utils/save-star.js");
 const ActiveStar = require("../schemas/ActiveStar.js");
 

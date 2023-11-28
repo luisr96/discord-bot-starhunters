@@ -6,7 +6,6 @@ const logger = pino({
 });
 const { SlashCommandBuilder } = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
-const locations = require("../data/locations.json");
 const db = require("../utils/db.js");
 const { format, formatDistanceToNow, parseISO } = require("date-fns");
 

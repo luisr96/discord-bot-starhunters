@@ -35,6 +35,7 @@ async function run({ interaction }) {
     // Check if the update was successful
     if (result.matchedCount === 1) {
       interaction.reply(`W${world} star released. It's now /active`);
+      logger.info("/release");
     } else {
       interaction.reply(
         `Star on W${world} was not found or was already released`

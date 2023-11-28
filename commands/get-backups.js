@@ -6,9 +6,8 @@ const logger = pino({
 });
 const { SlashCommandBuilder } = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
-const locations = require("../data/locations.json");
 const db = require("../utils/db.js");
-const { format, formatDistanceToNow, parseISO } = require("date-fns");
+const { formatDistanceToNow } = require("date-fns");
 
 const data = new SlashCommandBuilder()
   .setName("backups")
@@ -18,8 +17,11 @@ async function run({ interaction }) {
   try {
     const starsCollection = db.getStarsCollection();
 
+    const member = await interaction.guild.members.fetch(interaction.user.id);
+    const hasModRole = member.roles.cache.some((role) => role.name === "Mods");
+
     // Defer the reply to ensure enough time to process the command
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: hasModRole });
 
     const backupStars = await starsCollection
       .find({ calledAt: null })
@@ -34,7 +36,7 @@ async function run({ interaction }) {
 
         embed.addFields({
           name: `🔒 ${star.location}`,
-          value: `World hidden until called
+          value: `${hasModRole ? `W${star.world}` : "World hidden until called"}
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,

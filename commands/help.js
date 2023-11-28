@@ -1,4 +1,3 @@
-const { version } = require("discord.js");
 const { codeBlock } = require("@discordjs/builders");
 
 module.exports = {
