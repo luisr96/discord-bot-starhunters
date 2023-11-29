@@ -1,9 +1,9 @@
-# Starhelper: A Discord.js-based Management System for F2P OSRS
+# Starhelper: Shooting Stars Management System for F2P OSRS
 
 ## Overview
-Starhelper is a Discord bot created for efficient tracking, organization, and management of Shooting Stars in Old School RuneScape. It offers comprehensive CRUD (Create, Read, Update, Delete) features to improve the collaborative process of discovering and monitoring them.
+Starhelper is a Discord bot that offers comprehensive CRUD features to improve the collaborative process of discovering, monitoring, and managing Shooting Stars in Old School RuneScape free-to-play worlds.
 
-## Commands
+## Discord Commands
 ### Standard
 `/active`         Show list of active stars
 
@@ -11,20 +11,26 @@ Starhelper is a Discord bot created for efficient tracking, organization, and ma
 
 `/update-tier`    Update the tier of a star
 
-`/poof`           Call a star as disappeared
+`/poof`           Mark a star as disappeared
 
-### Auto-finding
-`/backups`        Show a list of backup stars. Worlds are hidden
+### Holding
+`/backups`        Show a list of backup stars. Worlds are hidden to everyone except the person who is holding the star and mods
 
-`/release`        Release a backup star (found via auto-find)
+`/hold`           Save a star as backup
+
+`/release`        Release a backup star
 
 ### Misc
 `/info`           See bot metadata
 
 ## Example Usage
-![demo](https://github.com/luisr96/discord-bot-starhunters/assets/56360815/bd8a2f27-336e-45b7-9b81-44221d7e12f9)
+#### Multi-user calling, and updating and displaying
+![demo_resized](https://github.com/luisr96/discord-bot-starhunters/assets/56360815/cd9deb6d-7920-4e78-99d4-cb38e2112bda)
 
+#### Holding stars (and its scoped visibility)
 
+## Auto-finding and auto-holding
+As an extra functionality, the app also supports automatically sending the star data from RuneLite and automatically placing those stars in a backup state.
 
 ## Contributing
 Contributions are welcome. If you'd like to contribute to Starhelper, please submit a pull request.
