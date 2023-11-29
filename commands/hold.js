@@ -12,7 +12,7 @@ const Star = require("../schemas/Star.js");
 const data = new SlashCommandBuilder()
   .setName("hold")
   .setDescription(
-    "Hold a star. Invisible to everyone except mods, until /release"
+    "Save a star as backup. Invisible to everyone except you and mods, until /release"
   )
   .addIntegerOption((option) =>
     option
@@ -45,7 +45,7 @@ async function run({ interaction }) {
   const tier = interaction.options.get("tier").value;
   const location = interaction.options.get("location").value;
 
-  await interaction.deferReply();
+  await interaction.deferReply({ ephemeral: true });
 
   const result = await saveStar(
     new Star(world, tier, location, interaction.user.id),
@@ -54,4 +54,4 @@ async function run({ interaction }) {
 
   interaction.editReply(result);
 }
-module.exports = { data, run, options: { devOnly: true } };
+module.exports = { data, run };

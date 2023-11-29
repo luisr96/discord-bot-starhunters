@@ -31,7 +31,6 @@ async function run({ interaction }) {
         .setColor("#00ff00");
 
       releasedStars.forEach((star, index) => {
-        console.log(star.foundAt);
         const foundDate = new Date(star.foundAt);
 
         embed.addFields({

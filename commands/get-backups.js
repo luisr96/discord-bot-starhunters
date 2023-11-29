@@ -33,14 +33,21 @@ async function run({ interaction }) {
 
       backupStars.forEach((star, index) => {
         const foundDate = new Date(star.foundAt);
+        const foundByThisUser = star.foundBy == interaction.user.id;
 
         embed.addFields({
           name: `🔒 ${star.location}`,
-          value: `${hasModRole ? `W${star.world}` : "World hidden until called"}
+          value: `
+                  ${
+                    hasModRole || foundByThisUser
+                      ? `W${star.world} (hidden to others)`
+                      : "World hidden until called"
+                  }
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
-                  })} by <@${star.foundBy}>`,
+                  })} by <@${star.foundBy}>
+                  `,
         });
       });
       logger.info("/backups");

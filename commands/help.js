@@ -14,23 +14,16 @@ module.exports = {
   /active      :: Show list of active stars
   /call        :: Call a star. This puts it on /active
   /update-tier :: Update the tier of a star
-  /poof        :: Call a star as disappeared
+  /poof        :: Mark a star as disappeared
 
   /backups     :: Show a list of backup stars. Worlds are hidden
-  /release     :: Release a backup star (found via auto-find)
+  /hold        :: Save a star as backup
+  /release     :: Release a backup star
 
   /info        :: See bot metadata
    `
     );
 
     interaction.reply(stars);
-  },
-
-  options: {
-    devOnly: true,
-    guildOnly: true,
-    userPermissions: ["Administrator", "AddReactions"],
-    botPermissions: ["Administrator", "AddReactions"],
-    deleted: false,
   },
 };

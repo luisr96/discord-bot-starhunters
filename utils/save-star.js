@@ -30,7 +30,7 @@ saveStar = async (starToSave, interaction) => {
     if (starToSave instanceof ActiveStar) {
       message = `${interaction.user} called a new **/active** star: W${starToSave.world} T${starToSave.tier} ${starToSave.location}`;
     } else {
-      message = `A star is being held as a backup by ${interaction.user}`;
+      message = `You're holding a star on W${starToSave.world}. Don't forget to **/release** it when ready!`;
     }
   } catch (error) {
     console.error(error);

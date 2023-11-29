@@ -9,7 +9,7 @@ const db = require("../utils/db.js");
 
 const data = new SlashCommandBuilder()
   .setName("release")
-  .setDescription("Release an auto-found star")
+  .setDescription("Release a backup star")
   .addIntegerOption((option) =>
     option
       .setName("world")
@@ -30,11 +30,9 @@ async function run({ interaction }) {
       { $set: { calledAt: new Date() } }
     );
 
-    console.log(result);
-
     // Check if the update was successful
     if (result.matchedCount === 1) {
-      interaction.reply(`W${world} star released. It's now /active`);
+      interaction.reply(`W${world} star released. It's now **/active**`);
       logger.info("/release");
     } else {
       interaction.reply(

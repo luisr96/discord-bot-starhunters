@@ -26,12 +26,4 @@ module.exports = {
 
     interaction.reply(stars);
   },
-
-  options: {
-    devOnly: true,
-    guildOnly: true,
-    userPermissions: ["Administrator", "AddReactions"],
-    botPermissions: ["Administrator", "AddReactions"],
-    deleted: false,
-  },
 };
