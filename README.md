@@ -13,7 +13,7 @@ Starhelper is a Discord bot that offers comprehensive CRUD features to improve t
 
 `/poof`           Mark a star as disappeared
 
-### Holding
+### Backups
 `/backups`        Show a list of backup stars. Worlds are hidden to everyone except the person who is holding the star and mods
 
 `/hold`           Save a star as backup
