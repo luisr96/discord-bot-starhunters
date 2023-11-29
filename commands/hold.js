@@ -7,11 +7,13 @@ const logger = pino({
 const { SlashCommandBuilder } = require("discord.js");
 const locations = require("../data/locations.json");
 const { saveStar } = require("../utils/save-star.js");
-const ActiveStar = require("../schemas/ActiveStar.js");
+const Star = require("../schemas/Star.js");
 
 const data = new SlashCommandBuilder()
-  .setName("call")
-  .setDescription("Call a star. This releases it to be viewed in /active")
+  .setName("hold")
+  .setDescription(
+    "Hold a star. Invisible to everyone except mods, until /release"
+  )
   .addIntegerOption((option) =>
     option
       .setName("world")
@@ -46,10 +48,10 @@ async function run({ interaction }) {
   await interaction.deferReply();
 
   const result = await saveStar(
-    new ActiveStar(world, tier, location, interaction.user.id),
+    new Star(world, tier, location, interaction.user.id),
     interaction
   );
 
   interaction.editReply(result);
 }
-module.exports = { data, run };
+module.exports = { data, run, options: { devOnly: true } };

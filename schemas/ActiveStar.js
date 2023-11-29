@@ -5,10 +5,11 @@ class ActiveStar extends Star {
     world,
     tier,
     location,
+    foundBy,
     foundAt = new Date(),
     calledAt = new Date()
   ) {
-    super(world, tier, location, foundAt);
+    super(world, tier, location, foundBy, foundAt);
 
     this.calledAt = calledAt;
   }

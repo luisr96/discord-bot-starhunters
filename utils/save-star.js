@@ -1,13 +1,15 @@
+const ActiveStar = require("../schemas/ActiveStar.js");
 const Star = require("../schemas/Star.js");
 const db = require("./db.js");
 const { getStarInWorld } = require("./get-star-in-world.js");
 
 /**
  * Saves the star to the database
- * @param  {Star} starToSave The star's world
- * @return {Object || null}  The document from the DB
+ * @param  {Star || ActiveStar}           starToSave  The star object
+ * @param  {ChatInputCommandInteraction}  interaction The Discord interaction object
+ * @return {Object || null}                           The document from the DB
  */
-saveStar = async (starToSave) => {
+saveStar = async (starToSave, interaction) => {
   const starsCollection = db.getStarsCollection();
   let message;
 
@@ -25,7 +27,11 @@ saveStar = async (starToSave) => {
       { $set: starToSave },
       { upsert: true }
     );
-    message = `New */active* star: W${starToSave.world} T${starToSave.tier} ${starToSave.location}`;
+    if (starToSave instanceof ActiveStar) {
+      message = `${interaction.user} called a new **/active** star: W${starToSave.world} T${starToSave.tier} ${starToSave.location}`;
+    } else {
+      message = `A star is being held as a backup by ${interaction.user}`;
+    }
   } catch (error) {
     console.error(error);
     message = "Error: Could not insert the star";

@@ -40,13 +40,13 @@ async function run({ interaction }) {
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
-                  })}`,
+                  })} by <@${star.foundBy}>`,
         });
       });
       logger.info("/active");
       interaction.editReply({ embeds: [embed] });
     } else {
-      interaction.followUp("No active stars found.");
+      interaction.followUp("No active stars found");
     }
   } catch (error) {
     console.error("Error querying MongoDB:", error);

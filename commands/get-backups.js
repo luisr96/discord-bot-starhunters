@@ -40,13 +40,13 @@ async function run({ interaction }) {
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
-                  })}`,
+                  })} by <@${star.foundBy}>`,
         });
       });
       logger.info("/backups");
       interaction.editReply({ embeds: [embed] });
     } else {
-      interaction.followUp("No backup stars found.");
+      interaction.followUp("No backup stars found");
     }
   } catch (error) {
     console.error("Error querying MongoDB:", error);
