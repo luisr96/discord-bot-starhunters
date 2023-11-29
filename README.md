@@ -58,7 +58,7 @@ The "Starcaller" webhook will trigger, and the bot will parse that data and save
 ![image](https://github.com/luisr96/discord-bot-starhunters/assets/56360815/2b79aaa3-162f-4c28-9838-68fa44e662aa)
 
 ## Contributing
-Contributions are welcome. If you'd like to contribute to Starhelper, please submit a pull request.
+Contributions are welcome. If you'd like to contribute to Starhelper, please submit a pull request. If there's a bug or feature you'd like implement, feel free to open an issue.
 
 ## License
 This project is licensed under the MIT License.
