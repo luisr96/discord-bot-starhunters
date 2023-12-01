@@ -35,6 +35,9 @@ const data = new SlashCommandBuilder()
       .setName("location")
       .setDescription("The location of the star")
       .setRequired(true)
+  )
+  .addStringOption((option) =>
+    option.setName("credit").setDescription("Credit for whoever found the star")
   );
 locations.forEach((loc) => {
   data.options[2].addChoices(loc);
@@ -44,6 +47,7 @@ async function run({ interaction }) {
   const world = interaction.options.get("world").value;
   const tier = interaction.options.get("tier").value;
   const location = interaction.options.get("location").value;
+  const credit = interaction.options.get("credit")?.value;
 
   await interaction.deferReply();
 
@@ -58,7 +62,12 @@ async function run({ interaction }) {
   }
 
   const result = await saveStar(
-    new ActiveStar(world, tier, location, interaction.user.id),
+    new ActiveStar(
+      world,
+      tier,
+      location,
+      credit ? credit : interaction.user.id
+    ),
     interaction
   );
 
