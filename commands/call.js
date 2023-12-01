@@ -8,6 +8,8 @@ const { SlashCommandBuilder } = require("discord.js");
 const locations = require("../data/locations.json");
 const { saveStar } = require("../utils/save-star.js");
 const ActiveStar = require("../schemas/ActiveStar.js");
+const { isMod } = require("../utils/is-mod.js");
+const { getAllCalledStars } = require("../utils/get-all-called-stars.js");
 
 const data = new SlashCommandBuilder()
   .setName("call")
@@ -44,6 +46,16 @@ async function run({ interaction }) {
   const location = interaction.options.get("location").value;
 
   await interaction.deferReply();
+
+  const isUserMod = await isMod(interaction);
+  const anyStarsCalled = (await getAllCalledStars()).length > 0;
+
+  if (!isUserMod) {
+    if (anyStarsCalled) {
+      interaction.editReply("Need mod privileges. Use **/hold** instead");
+      return;
+    }
+  }
 
   const result = await saveStar(
     new ActiveStar(world, tier, location, interaction.user.id),

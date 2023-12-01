@@ -8,7 +8,7 @@ const { SlashCommandBuilder } = require("discord.js");
 const db = require("../utils/db.js");
 
 const data = new SlashCommandBuilder()
-  .setName("update-tier")
+  .setName("update")
   .setDescription("Update the tier of a star")
   .addIntegerOption((option) =>
     option

@@ -20,6 +20,14 @@ const data = new SlashCommandBuilder()
   );
 
 async function run({ interaction }) {
+  await interaction.deferReply();
+
+  const isUserMod = await isMod(interaction);
+  if (!isUserMod) {
+    interaction.editReply("Need mod privileges");
+    return;
+  }
+
   const world = interaction.options.get("world").value;
 
   const starsCollection = db.getStarsCollection();
@@ -32,15 +40,15 @@ async function run({ interaction }) {
 
     // Check if the update was successful
     if (result.matchedCount === 1) {
-      interaction.reply(`W${world} star released. It's now **/active**`);
+      interaction.editReply(`W${world} star released. It's now **/active**`);
       logger.info("/release");
     } else {
-      interaction.reply(
+      interaction.editReply(
         `Star on W${world} was not found or was already released`
       );
     }
   } catch (error) {
-    interaction.reply("Error: Could not release the star");
+    interaction.editReply("Error: Could not release the star");
   }
 }
 

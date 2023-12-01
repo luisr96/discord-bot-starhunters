@@ -5,7 +5,8 @@ class Star {
     location,
     foundBy,
     foundAt = new Date(),
-    calledAt = null
+    calledAt = null,
+    credit = foundBy
   ) {
     this.world = world;
     this.tier = tier;
@@ -13,6 +14,7 @@ class Star {
     this.foundBy = foundBy;
     this.foundAt = foundAt;
     this.calledAt = calledAt;
+    this.credit = credit;
   }
 }
 
