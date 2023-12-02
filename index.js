@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
 const { CommandKit } = require("commandkit");
 const config = require("./config.json");
 require("dotenv").config();
+const express = require("express");
 const path = require("node:path");
 const { connectToMongoDB } = require("./utils/db.js");
 const pino = require("pino");
@@ -33,6 +34,16 @@ new CommandKit({
   devRoleIds: [],
   skipBuiltInValidations: true,
   bulkRegister: true,
+});
+
+// Google Cloud Run requires a health check endpoint
+const app = express();
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
+app.listen(3000, () => {
+  console.log(`Express server is running on port 3000`);
 });
 
 client.once("ready", () => {
