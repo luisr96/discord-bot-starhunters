@@ -12,3 +12,9 @@ steps:
       - "instance-2"
       - "--container-image=gcr.io/discord-node-app/discord-node-app:latest"
       - "--zone=northamerica-northeast1-a"
+    secretEnv: ["TOKEN", "MONGODB_URI"]
+
+secrets:
+  - version: "latest"
+    secretManager:
+      secret: projects/discord-node-app/secrets/discord-bot-secrets/versions/latest

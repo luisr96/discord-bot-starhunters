@@ -48,7 +48,7 @@ app.listen(3000, () => {
 
 client.once("ready", () => {
   client.user.setPresence({
-    activities: [{ name: `stars | /help`, type: ActivityType.Watching }],
+    activities: [{ name: `stars! | /help`, type: ActivityType.Watching }],
   });
   logger.info("Bot is online");
 });
