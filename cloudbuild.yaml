@@ -4,3 +4,10 @@ steps:
       ["build", "-t", "gcr.io/discord-node-app/discord-node-app:latest", "."]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/discord-node-app/discord-node-app:latest"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "compute"
+      - "instances"
+      - "update-container"
+      - "instance-2"
+      - "--container-image=gcr.io/discord-node-app/discord-node-app:latest"
