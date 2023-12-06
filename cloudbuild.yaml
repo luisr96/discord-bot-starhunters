@@ -18,4 +18,4 @@ steps:
       - "--metadata=_INSTANCE_TEMPLATE=instance-template-1"
 
 substitutions:
-  INSTANCE_NAME: instance-2
+  _INSTANCE_NAME: instance-2
