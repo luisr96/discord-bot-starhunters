@@ -1,5 +1,6 @@
 steps:
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/discord-node-app/discord-node-app", "."]
+    args:
+      ["build", "-t", "gcr.io/discord-node-app/discord-node-app:latest", "."]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/discord-node-app/discord-node-app"]
+    args: ["push", "gcr.io/discord-node-app/discord-node-app:latest"]
