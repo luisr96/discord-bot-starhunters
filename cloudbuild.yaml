@@ -22,5 +22,5 @@ steps:
 secrets:
   - versionName: projects/discord-node-app/secrets/discord-bot-secrets/versions/1
     secretEnv:
-      _TOKEN: "1"
-      _MONGODB_URI: "1"
+      "_TOKEN": "1"
+      "_MONGODB_URI": "1"
