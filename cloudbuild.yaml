@@ -11,3 +11,4 @@ steps:
       - "update-container"
       - "instance-2"
       - "--container-image=gcr.io/discord-node-app/discord-node-app:latest"
+      - "--zone=northamerica-northeast1-a"
