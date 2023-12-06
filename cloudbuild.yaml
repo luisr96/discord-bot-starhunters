@@ -11,11 +11,15 @@ steps:
     args:
       - "compute"
       - "instances"
-      - "update-container"
-      - "INSTANCE_NAME"
-      - "--container-image=gcr.io/discord-node-app/discord-node-app:latest"
+      - "update"
+      - "instance-2"
       - "--zone=northamerica-northeast1-a"
       - "--metadata=_INSTANCE_TEMPLATE=instance-template-1"
-
-substitutions:
-  _INSTANCE_NAME: instance-2
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - "compute"
+      - "instances"
+      - "update-container"
+      - "instance-2"
+      - "--container-image=gcr.io/discord-node-app/discord-node-app:latest"
+      - "--zone=northamerica-northeast1-a"
