@@ -13,7 +13,7 @@ module.exports = {
   = COMMANDS =
   /active      :: Show list of active stars
   /call        :: Call a star. This puts it on /active
-  /update-tier :: Update the tier of a star
+  /update      :: Update the tier of a star
   /poof        :: Mark a star as disappeared
 
   /backups     :: Show a list of backup stars. Worlds are hidden

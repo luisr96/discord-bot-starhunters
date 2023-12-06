@@ -21,7 +21,7 @@ async function run({ interaction }) {
     const hasModRole = member.roles.cache.some((role) => role.name === "Mods");
 
     // Defer the reply to ensure enough time to process the command
-    await interaction.deferReply({ ephemeral: hasModRole });
+    await interaction.deferReply({ ephemeral: true });
 
     const backupStars = await starsCollection
       .find({ calledAt: null })
