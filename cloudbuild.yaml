@@ -1,7 +1,10 @@
 steps:
   - name: "gcr.io/cloud-builders/docker"
     args:
-      ["build", "-t", "gcr.io/discord-node-app/discord-node-app:latest", "."]
+      - "build"
+      - "-t"
+      - "gcr.io/discord-node-app/discord-node-app:latest"
+      - "."
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/discord-node-app/discord-node-app:latest"]
   - name: "gcr.io/cloud-builders/gcloud"
@@ -9,18 +12,10 @@ steps:
       - "compute"
       - "instances"
       - "update-container"
-      - "instance-2"
+      - "INSTANCE_NAME"
       - "--container-image=gcr.io/discord-node-app/discord-node-app:latest"
       - "--zone=northamerica-northeast1-a"
-    env:
-      - "TOKEN=$_TOKEN"
-      - "MONGODB_URI=$_MONGODB_URI"
-    secretEnv:
-      - "_TOKEN"
-      - "_MONGODB_URI"
+      - "--metadata=_INSTANCE_TEMPLATE=instance-template-1"
 
-secrets:
-  - versionName: projects/discord-node-app/secrets/discord-bot-secrets/versions/1
-    secretEnv:
-      "_TOKEN": "1"
-      "_MONGODB_URI": "1"
+substitutions:
+  INSTANCE_NAME: instance-2
