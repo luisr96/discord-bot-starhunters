@@ -22,9 +22,9 @@ const data = new SlashCommandBuilder()
 async function run({ interaction }) {
   await interaction.deferReply();
 
-  const isUserMod = await isMod(interaction);
-  if (!isUserMod) {
-    interaction.editReply("Need mod privileges");
+  const isAuth = await isAuthorized(interaction, ["Ranked"]);
+  if (!isAuth) {
+    interaction.editReply("Insufficient privileges");
     return;
   }
 

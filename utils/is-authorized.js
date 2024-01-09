@@ -3,14 +3,16 @@
  * @param  {Number} interaction   The discord interaction
  * @return {boolean}              Whether or not user is mod
  */
-isMod = async (interaction) => {
+isAuthorized = async (interaction, acceptedRoles) => {
   try {
     const member = await interaction.guild.members.fetch(interaction.user.id);
-    const isUserMod = member.roles.cache.some((role) => role.name === "Mods");
-    return isUserMod;
+    const hasAcceptedRole = member.roles.cache.some((role) =>
+      acceptedRoles.includes(role.name)
+    );
+    return hasAcceptedRole;
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { isMod };
+module.exports = { isAuthorized };
