@@ -24,6 +24,11 @@ async function run({ interaction }) {
     // Defer the reply to ensure enough time to process the command
     await interaction.deferReply({ ephemeral: true });
 
+    if (!isAuth) {
+      interaction.editReply("Backups is a Ranked-only command");
+      return;
+    }
+
     const backupStars = await starsCollection
       .find({ calledAt: null })
       .sort({ foundAt: 1 })
@@ -39,11 +44,7 @@ async function run({ interaction }) {
         embed.addFields({
           name: `🔒 ${star.location}`,
           value: `
-                  ${
-                    isAuth || foundByThisUser
-                      ? `W${star.world} (hidden to others)`
-                      : "World hidden until called"
-                  }
+                  ${`W${star.world}`}
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
