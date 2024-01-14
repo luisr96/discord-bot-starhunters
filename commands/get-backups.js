@@ -8,6 +8,7 @@ const { SlashCommandBuilder } = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
 const db = require("../utils/db.js");
 const { formatDistanceToNow } = require("date-fns");
+const { isAuthorized } = require("../utils/is-authorized.js");
 
 const data = new SlashCommandBuilder()
   .setName("backups")
@@ -18,7 +19,7 @@ async function run({ interaction }) {
     const starsCollection = db.getStarsCollection();
 
     const member = await interaction.guild.members.fetch(interaction.user.id);
-    const hasModRole = member.roles.cache.some((role) => role.name === "Mods");
+    const isAuth = await isAuthorized(interaction, ["Ranked"]);
 
     // Defer the reply to ensure enough time to process the command
     await interaction.deferReply({ ephemeral: true });
@@ -39,7 +40,7 @@ async function run({ interaction }) {
           name: `🔒 ${star.location}`,
           value: `
                   ${
-                    hasModRole || foundByThisUser
+                    isAuth || foundByThisUser
                       ? `W${star.world} (hidden to others)`
                       : "World hidden until called"
                   }
