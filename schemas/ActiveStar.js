@@ -7,9 +7,10 @@ class ActiveStar extends Star {
     location,
     foundBy,
     foundAt = new Date(),
+    updatedAt = null,
     calledAt = new Date()
   ) {
-    super(world, tier, location, foundBy, foundAt);
+    super(world, tier, location, foundBy, foundAt, updatedAt);
 
     this.calledAt = calledAt;
   }

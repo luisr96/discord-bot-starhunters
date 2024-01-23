@@ -32,6 +32,7 @@ async function run({ interaction }) {
 
       releasedStars.forEach((star, index) => {
         const foundDate = new Date(star.foundAt);
+        const updatedDate = new Date(star.updatedAt);
 
         embed.addFields({
           name: `⭐ ${star.location}`,
@@ -39,7 +40,9 @@ async function run({ interaction }) {
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
-                  })} by <@${star.foundBy}>`,
+                  })} by <@${star.foundBy}>
+                  ${star.updatedAt ? 'Updated ' + formatDistanceToNow(updatedDate, { addSuffix: true, }) : ''}
+                  `,
         });
       });
       logger.info("/active");

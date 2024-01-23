@@ -37,7 +37,9 @@ const data = new SlashCommandBuilder()
       .setRequired(true)
   )
   .addStringOption((option) =>
-    option.setName("credit").setDescription("Credit for whoever found the star")
+    option
+      .setName("credit")
+      .setDescription("Credit for whoever found the star")
   );
 locations.forEach((loc) => {
   data.options[2].addChoices(loc);

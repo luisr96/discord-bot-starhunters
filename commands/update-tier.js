@@ -30,13 +30,14 @@ const data = new SlashCommandBuilder()
 async function run({ interaction }) {
   const world = interaction.options.get("world").value;
   const newTier = interaction.options.get("new-tier").value;
+  const updatedDate = new Date();
 
   const starsCollection = db.getStarsCollection();
 
   try {
     const update = await starsCollection.updateOne(
       { world },
-      { $set: { tier: newTier } }
+      { $set: { tier: newTier, updatedAt: updatedDate } }
     );
 
     if (update.modifiedCount === 1) {
