@@ -11,7 +11,7 @@ updateStarTier = async (world, newTier) => {
     const starsCollection = db.getStarsCollection();
     const result = await starsCollection.updateOne(
       { world },
-      { $set: { tier: newTier } }
+      { $set: { tier: newTier, updatedAt: updatedDate } }
     );
     return "Success";
   } catch (error) {
