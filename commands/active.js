@@ -6,6 +6,7 @@ const logger = pino({
 });
 const { SlashCommandBuilder } = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
+const totalWorldList = require("../data/total-worlds.json");
 const db = require("../utils/db.js");
 const { format, formatDistanceToNow, parseISO } = require("date-fns");
 
@@ -34,9 +35,16 @@ async function run({ interaction }) {
         const foundDate = new Date(star.foundAt);
         const updatedDate = new Date(star.updatedAt);
 
+        totalWorld = "";
+        if (totalWorldList[0]["500 total worlds"].includes(star.world)) {
+          totalWorld = "(500 total)";
+        } else if (totalWorldList[0]["750 total worlds"].includes(star.world)) {
+          totalWorld = "(750 total)";
+        }
+
         embed.addFields({
           name: `⭐ ${star.location}`,
-          value: `World: ${star.world}
+          value: `World: ${star.world} ${totalWorld}
                   Tier: ${star.tier}
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,

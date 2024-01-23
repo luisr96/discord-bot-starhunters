@@ -1,70 +1,86 @@
 [
   {
-    "name": "Dwarven Mine northern entrance (ice)",
-    "value": "Dwarven Mine northern entrance (ice)"
+    "name": "Al Kharid Mine (akm)",
+    "value": "Al Kharid Mine (akm)"
   },
   {
-    "name": "Mining Guild entrance (fally / fb)",
-    "value": "Mining Guild entrance (fally / fb)"
+    "name": "Al Kharid Bank (akb)",
+    "value": "Al Kharid Bank (akb)"
+  },
+  {
+    "name": "Emir's Arena (pvp / mta / apa / duel)",
+    "value": "Emir's Arena (pvp / mta / apa / duel)"
+  },
+  {
+    "name": "East Lumbridge Swamp Mine (lse)",
+    "value": "East Lumbridge Swamp Mine (lse)"
+  },
+  {
+    "name": "West Lumbridge Swamp Mine (lsw)",
+    "value": "West Lumbridge Swamp Mine (lsw)"
+  },
+  {
+    "name": "Draynor Village (dray)",
+    "value": "Draynor Village (dray)"
+  },
+  {
+    "name": "Varrock East Bank (vb / veb)",
+    "value": "Varrock East Bank (vb / veb)"
+  },
+  {
+    "name": "South-East Varrock Mine (vse)",
+    "value": "South-East Varrock Mine (vse)"
+  },
+  {
+    "name": "South-West Varrock Mine (vsw)",
+    "value": "South-West Varrock Mine (vsw)"
+  },
+  {
+    "name": "Dwarven Mine Northern Entrance (ice)",
+    "value": "Dwarven Mine Northern Entrance (ice)"
+  },
+  {
+    "name": "Mining Guild Entrance (fally / fb)",
+    "value": "Mining Guild Entrance (fally / fb)"
   },
   {
     "name": "Crafting Guild (cg)",
     "value": "Crafting Guild (cg)"
   },
   {
-    "name": "Rimmington mine (rim)",
-    "value": "Rimmington mine (rim)"
+    "name": "Rimmington Mine (rim)",
+    "value": "Rimmington Mine (rim)"
   },
   {
-    "name": "South Crandor mine",
-    "value": "South Crandor mine"
+    "name": "Corsair Cove Bank (ccb)",
+    "value": "Corsair Cove Bank (ccb)"
   },
   {
-    "name": "North Crandor mine",
-    "value": "North Crandor mine"
+    "name": "Corsair Cove Resource Area (ccr)",
+    "value": "Corsair Cove Resource Area (ccr)"
   },
   {
-    "name": "Corsair Cove",
-    "value": "Corsair Cove"
+    "name": "North Crandor Mine (nc / ncm)",
+    "value": "North Crandor Mine (nc / ncm)"
   },
   {
-    "name": "Corsair Cove Resource Area",
-    "value": "Corsair Cove Resource Area"
+    "name": "South Crandor Mine (sc / scm)",
+    "value": "South Crandor Mine (sc / scm)"
   },
   {
-    "name": "Al Kharid mine (akm)",
-    "value": "Al Kharid mine (akm)"
+    "name": "South Wilderness Mine / Abyss Mine / Mage of Zamorak Mine (abyss / swm) (level 7 Wilderness)",
+    "value": "South Wilderness Mine / Abyss Mine / Mage of Zamorak Mine (abyss / swm) (level 7 Wilderness)"
   },
   {
-    "name": "Al Kharid bank (akb)",
-    "value": "Al Kharid bank (akb)"
+    "name": "South-West Wilderness Mine near Dark Warriors' Fortress (skeleton mine / dwf) (level 10 Wilderness)",
+    "value": "South-West Wilderness Mine near Dark Warriors' Fortress (skeleton mine / dwf) (level 10 Wilderness)"
   },
   {
-    "name": "Emir's Arena (pvp / mta / apa)",
-    "value": "Emir's Arena (pvp / mta / apa)"
+    "name": "Bandit Camp Mine / Hobgoblin Mine (bcm / hobgob) (level 33 Wilderness)",
+    "value": "Bandit Camp Mine / Hobgoblin Mine (bcm / hobgob) (level 33 Wilderness)"
   },
   {
-    "name": "East Lumbridge Swamp mine (lse)",
-    "value": "East Lumbridge Swamp mine (lse)"
-  },
-  {
-    "name": "West Lumbridge Swamp mine (lsw)",
-    "value": "West Lumbridge Swamp mine (lsw)"
-  },
-  {
-    "name": "Draynor Village",
-    "value": "Draynor Village"
-  },
-  {
-    "name": "Varrock East bank (veb)",
-    "value": "Varrock East bank (veb)"
-  },
-  {
-    "name": "South-east Varrock mine (vse)",
-    "value": "South-east Varrock mine (vse)"
-  },
-  {
-    "name": "South-west Varrock mine (vsw)",
-    "value": "South-west Varrock mine (vsw)"
+    "name": "Rune Rocks / Lava Maze Runite Mine (rr / wrr) (level 46 Wilderness)",
+    "value": "Rune Rocks / Lava Maze Runite Mine (rr / wrr) (level 46 Wilderness)"
   }
 ]
