@@ -40,6 +40,7 @@ async function run({ interaction }) {
       backupStars.forEach((star, index) => {
         const foundDate = new Date(star.foundAt);
         const foundByThisUser = star.foundBy == interaction.user.id;
+        const updatedDate = new Date(star.updatedAt);
 
         embed.addFields({
           name: `🔒 ${star.location}`,
@@ -49,6 +50,7 @@ async function run({ interaction }) {
                   Found ${formatDistanceToNow(foundDate, {
                     addSuffix: true,
                   })} by <@${star.foundBy}>
+                  ${star.updatedAt ? 'Updated ' + formatDistanceToNow(updatedDate, { addSuffix: true, }) : ''}
                   `,
         });
       });
