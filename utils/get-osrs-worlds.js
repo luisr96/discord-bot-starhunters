@@ -1,8 +1,13 @@
+const World = require("../schemas/Word.js");
+
+
 async function HttpGetOSRSWorldsAsync() {
     const worlds = { member: [], free: [] };
 
     const response = await fetch('http://www.runescape.com/g=oldscape/slr.ws?order=LPWM'); // Replace with your API endpoint
     const arrayBuffer = await response.arrayBuffer();
+
+    if (arrayBuffer) throw new Error("Fetch was not sucessful.");
 
     const dataView = new DataView(arrayBuffer);
 
@@ -10,11 +15,11 @@ async function HttpGetOSRSWorldsAsync() {
     const length = dataView.getInt32(0); // Reads 4 bytes
     const amountOfWorlds = dataView.getInt16(4); // Reads 2 bytes
     let offset = 6; // Start reading after the amountOfWorlds (4+2 bytes)
-
     
     // Read World Server Information
     do  {
         // console.log("length > offset:", length > offset, offset);
+        // this is based off RLs code, however, javascript does not advance the read-head/pointer when read, so we have to keep track of the offset ourselves.
         const worldNumber = dataView.getInt16(offset, false); // read 2 bytes (starting from offset 6)
         const worldTypes = dataView.getInt32(offset + 2, false); //  Reads 4 bytes from offset + 2 (WorldNumber)
         const address = readString(dataView, offset + 6); // Read 1 byte until null-byte
@@ -23,8 +28,9 @@ async function HttpGetOSRSWorldsAsync() {
         const playerCount = dataView.getUint16(activity.offset + 2, false); // Read 2 bytes from offset of activity null-byte + 1 byte
         
         // TODO change worldTypes to Enums and add types https://github.com/runelite/api.runelite.net/blob/master/http-service/src/main/java/net/runelite/http/service/worlds/ServiceWorldType.java
-        const world = {worldNumber, address: address.text, activity: activity.text, location, playerCount};
+        const world = new World(worldNumber, worldTypes, address, activity, location, playerCount);
         // console.log(world);
+        
         
         if (isF2p(worldTypes)) {
             worlds.free.push(world);
@@ -40,6 +46,7 @@ async function HttpGetOSRSWorldsAsync() {
     return worlds;
 }
 
+// Read 1 Byte until Null-Byte is found
 function readString(dataView, offset) {
     let b;
     const sb = [];
@@ -52,15 +59,20 @@ function readString(dataView, offset) {
     return {text: sb.join(''), offset};
 }
 
+// TODO find out all the world types by enum, and change world schema for types to list
+function getWorldTypes(type) {
+    const types = []
+    if (type & 1) types.push("MEM")
+    return types
+}
+
 function isF2p(worldTypes) {
-    // Implement your logic to check if worldTypes indicate F2P
-    // For example, if (worldTypes & 1) { /* F2P */ }
-    return (worldTypes & 1) === 0;
+    return (worldTypes & 1) === 0; // not a member world
 }
 
 module.exports = { HttpGetOSRSWorldsAsync, isF2p };
 
-// Just some notes for ne to wrap my head around byte reading
+// Just some notes for me to wrap my head around byte reading
 // getUint8(offset): Reads 1 byte (8 bits) unsigned
 // getInt8(offset): Reads 1 byte (8 bits)
 //
