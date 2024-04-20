@@ -65,10 +65,10 @@ async function HttpRequesStarMinersFetchDataAsync() {
     for (var star of data) {
         // Check for Free-to-play worlds
         if (f2pworlds.includes(star.world)) {            
-            const {world, tier, calledBy: credit} = star;
+            const {world, tier, calledBy: foundBy} = star;
             const location = ConvertLocation(star.calledLocation);
 
-            result.push(new Star(world,  tier, location, credit));
+            result.push(new Star(world,  tier, location, "Starminers - " + foundBy));
         }
     }
     
