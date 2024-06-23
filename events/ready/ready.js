@@ -4,16 +4,13 @@ const logger = pino({
     target: "pino-pretty",
   },
 });
-const { SlashCommandBuilder } = require("discord.js");
-const { EmbedBuilder } = require("discord.js");
-const totalWorldList = require("../../data/total-worlds.json");
-const db = require("../../utils/db.js");
+
 const activeStarsEmbed = require("../../utils/active-stars-embed.js");
-const { format, formatDistanceToNow, parseISO } = require("date-fns");
 
 
-
+// Clear previous messages and send current active list when bot starts
 module.exports = async (c, client, interaction) => {
+  // Make sure this is the id of a bot-specific channel as it deletes old messages
   const channel = client.channels.cache.get('1254231419497091194');
   channel.send({ content: "Bot is restarting..." });
 
@@ -28,8 +25,6 @@ module.exports = async (c, client, interaction) => {
     .catch(console.error);
 
   channel.send(starsEmbed);
-
   // }, 0);
-
 
 };
