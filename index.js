@@ -45,9 +45,6 @@ app.get("/health", (req, res) => {
   res.status(200).send("OK");
 });
 
-// EventEmitter.setMaxListeners(4);
-process.on('warning', e => console.warn("Warning!!!!:", e.stack));
-
 app.listen(3000, () => {
   console.log(`Express server is running on port 3000`);
 });
