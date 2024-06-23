@@ -22,10 +22,11 @@ module.exports = async () => {
 
     releasedStars.forEach((star) => {
       const foundDate = new Date(star.foundAt);
+      const calledDate = new Date(star.calledAt);
       const updatedDate = new Date(star.updatedAt);
 
       // Estimate current tier based on last updated time
-      let lastUpdate = star.updatedAt ? updatedDate : foundDate;
+      let lastUpdate = star.updatedAt ? updatedDate : calledDate;
       let tierDiff = parseInt((new Date() - lastUpdate) / (1000 * 60 * 7));
       let estimatedTier = Math.max(star.tier - tierDiff, 0);
 
