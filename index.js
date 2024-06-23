@@ -55,8 +55,8 @@ client.once("ready", () => {
   });
   logger.info("Bot is online");
 
-  let task = cron.schedule('*/10 * * * * *', () => {
-    console.log('running a call every 10 sec');
+  let task = cron.schedule('*/5 * * * *', () => {
+    logger.info('Running /call after 5 minutes');
     autoCallStars(client);
   });
 });
