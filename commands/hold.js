@@ -1,9 +1,9 @@
-const pino = require("pino");
-const logger = pino({
-  transport: {
-    target: "pino-pretty",
-  },
-});
+// const pino = require("pino");
+// const logger = pino({
+//   transport: {
+//     target: "pino-pretty",
+//   },
+// });
 const { SlashCommandBuilder } = require("discord.js");
 const locations = require("../data/locations.json");
 const { saveStar } = require("../utils/save-star.js");
