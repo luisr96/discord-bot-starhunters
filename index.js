@@ -3,9 +3,12 @@ const { CommandKit } = require("commandkit");
 const config = require("./config.json");
 require("dotenv").config();
 const express = require("express");
+const cron = require('node-cron');
 const path = require("node:path");
+const { autoCallStars } = require("./utils/auto-call-stars.js");
 const { connectToMongoDB } = require("./utils/db.js");
 const pino = require("pino");
+
 const logger = pino({
   transport: {
     target: "pino-pretty",
@@ -51,6 +54,12 @@ client.once("ready", () => {
     activities: [{ name: `stars! | /help`, type: ActivityType.Watching }],
   });
   logger.info("Bot is online");
+
+  autoCallStars(client);
+  cron.schedule('*/1 * * * *', () => {
+    logger.info('Running /call after 1 minute');
+    autoCallStars(client);
+  });
 });
 
 (async () => {
