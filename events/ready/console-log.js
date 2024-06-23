@@ -6,36 +6,38 @@ const logger = pino({
 });
 const { SlashCommandBuilder } = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
-const totalWorldList = require("../data/total-worlds.json");
-const activeStarsEmbed = require("../utils/active-stars-embed.js");
-const db = require("../utils/db.js");
+const totalWorldList = require("../../data/total-worlds.json");
+const db = require("../../utils/db.js");
+const activeStarsEmbed = require("../../utils/active-stars-embed.js");
 const { format, formatDistanceToNow, parseISO } = require("date-fns");
 
-const data = new SlashCommandBuilder()
-  .setName("active")
-  .setDescription("Get a list of released stars");
 
-async function run({ c, client, interaction }) {
-  logger.info("/active");
 
-  // Defer the reply to ensure enough time to process the command
-  await interaction.deferReply();
+module.exports = async (c, client, interaction) => {
+  // async function run() {
+  // module.exports = (c, client, handler) => {
+  console.log(`${c.user.username} is ready!`);
+
+  // console.log("c: ", c);
+  // console.log("client: ", client);
+  console.log("interaction: ", interaction);
+
+  const channel = client.channels.cache.get('1199112511048388701');
+  // console.log(channel);
+  channel.send({ content: "Test message" });
+
+  // console.log("\n\n\n Client: ", client);
+  // console.log("\n\n\n handler: ", handler);
+
 
   const starsEmbed = await activeStarsEmbed();
 
-  interaction.editReply(starsEmbed);
+  channel.send(starsEmbed);
 
-  // channel.send(starsEmbed);
 
 
   // try {
   //   const starsCollection = db.getStarsCollection();
-
-  //   const channel = client.channels.cache.get('1199112511048388701');
-
-  //   // console.log("\n\nc: ", c);
-  //   // console.log("\n\nclient: ", client);
-  //   // console.log("\n\ninteraction: ", interaction);
 
   //   // Defer the reply to ensure enough time to process the command
   //   // await interaction.deferReply();
@@ -75,7 +77,7 @@ async function run({ c, client, interaction }) {
   //                 `,
   //       });
   //     });
-  //     logger.info("/active");
+  //     logger.info("/console-log");
   //     channel.send({ embeds: [embed] });
   //     // interaction.editReply({ embeds: [embed] });
   //   } else {
@@ -88,13 +90,10 @@ async function run({ c, client, interaction }) {
   //   // interaction.followUp("Error: Could not get active stars");
   // }
 
-  //     interaction.editReply({ embeds: [embed] });
-  //   } else {
-  //     interaction.followUp("No active stars found");
-  //   }
-  // } catch (error) {
-  //   console.error("Error querying MongoDB:", error);
-  //   interaction.followUp("Error: Could not get active stars");
-  // }
-}
-module.exports = { data, run };
+
+};
+
+
+// module.exports = { run };
+
+// module.exports = (c, client, handler) => await {
