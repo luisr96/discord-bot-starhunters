@@ -1,24 +1,20 @@
-const pino = require("pino");
-const logger = pino({
-  transport: {
-    target: "pino-pretty",
-  },
-});
-const { SlashCommandBuilder } = require("discord.js");
+// const pino = require("pino");
+// const logger = pino({
+//   transport: {
+//     target: "pino-pretty",
+//   },
+// });
 const { EmbedBuilder } = require("discord.js");
 const totalWorldList = require("../data/total-worlds.json");
 const db = require("./db.js");
-const { format, formatDistanceToNow, parseISO } = require("date-fns");
+const { formatDistanceToNow } = require("date-fns");
 
-
-
-module.exports = async (c, client, interaction) => {
+module.exports = async () => {
 
   try {
-    const starsCollection = db.getStarsCollection();
+    // return { content: "No active stars found" };
 
-    // Defer the reply to ensure enough time to process the command
-    // await interaction.deferReply();
+    const starsCollection = db.getStarsCollection();
 
     const releasedStars = await starsCollection
       .find({ calledAt: { $exists: true, $ne: null } })
@@ -55,23 +51,13 @@ module.exports = async (c, client, interaction) => {
                   `,
         });
       });
-      logger.info("/utils/active-stars-embed");
+      // logger.info("/utils/active-stars-embed");
       return { embeds: [embed] };
-
-      // channel.send({ embeds: [embed] });
-      // interaction.editReply({ embeds: [embed] });
     } else {
-
       return { content: "No active stars found" };
-      // channel.send({ content: "No active stars found" });
-      // interaction.followUp("No active stars found");
     }
   } catch (error) {
     console.error("Error querying MongoDB:", error);
     return { content: "Error: Could not get active stars" };
-    // channel.send({ content: "Error: Could not get active stars" });
-    // interaction.followUp("Error: Could not get active stars");
   }
-
-
 };

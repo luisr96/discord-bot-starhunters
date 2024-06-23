@@ -51,6 +51,11 @@ client.once("ready", () => {
     activities: [{ name: `stars! | /help`, type: ActivityType.Watching }],
   });
   logger.info("Bot is online");
+
+  let task = cron.schedule('*/10 * * * * *', () => {
+    console.log('running a call every 10 sec');
+    autoCallStars(client);
+  });
 });
 
 (async () => {
