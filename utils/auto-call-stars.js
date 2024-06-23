@@ -4,12 +4,18 @@ const activeStarsEmbed = require("../embeds/active-stars-embed.js");
 async function autoCallStars(client) {
 
   // Make sure this is the id/name of a bot-specific channel as it deletes old messages
-  // const channel = client.channels.cache.get('1254231419497091194');  // ID
-  const channel = client.channels.cache.find(c => c.name === 'bots');   // name
-  await channel.bulkDelete(3);
+  const channelIdentifier = 'bots';
+  // const channel = client.channels.cache.get(channelIdentifier);                  // ID
+  const channel = client.channels.cache.find(c => c.name === channelIdentifier);    // name
 
-  const starsEmbed = await activeStarsEmbed();
-  channel.send(starsEmbed);
+  if (channel) {
+    await channel.bulkDelete(3);
+
+    const starsEmbed = await activeStarsEmbed();
+    channel.send(starsEmbed);
+  } else {
+    console.error("\nError: No channel found by", channelIdentifier);
+  }
 
 };
 

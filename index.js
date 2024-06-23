@@ -56,8 +56,8 @@ client.once("ready", () => {
   logger.info("Bot is online");
 
   autoCallStars(client);
-  cron.schedule('*/5 * * * *', () => {
-    logger.info('Running /call after 5 minutes');
+  cron.schedule('*/1 * * * *', () => {
+    logger.info('Running /call after 1 minute');
     autoCallStars(client);
   });
 });
