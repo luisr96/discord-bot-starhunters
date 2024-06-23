@@ -3,9 +3,12 @@ const { CommandKit } = require("commandkit");
 const config = require("./config.json");
 require("dotenv").config();
 const express = require("express");
+const cron = require('node-cron');
 const path = require("node:path");
+const { autoCallStars } = require("./utils/auto-call-stars.js");
 const { connectToMongoDB } = require("./utils/db.js");
 const pino = require("pino");
+
 const logger = pino({
   transport: {
     target: "pino-pretty",
@@ -44,9 +47,6 @@ app.get("/health", (req, res) => {
 
 // EventEmitter.setMaxListeners(4);
 process.on('warning', e => console.warn("Warning!!!!:", e.stack));
-// let eventType = 'log';
-// let listeners = process.listeners(eventType);
-// console.log("\n\n\n", eventType, "Listeners: ", listeners);
 
 app.listen(3000, () => {
   console.log(`Express server is running on port 3000`);

@@ -6,14 +6,12 @@
 // });
 const { EmbedBuilder } = require("discord.js");
 const totalWorldList = require("../data/total-worlds.json");
-const db = require("./db.js");
+const db = require("../utils/db.js");
 const { formatDistanceToNow } = require("date-fns");
 
 module.exports = async () => {
 
   try {
-    // return { content: "No active stars found" };
-
     const starsCollection = db.getStarsCollection();
 
     const releasedStars = await starsCollection
@@ -51,7 +49,7 @@ module.exports = async () => {
                   `,
         });
       });
-      // logger.info("/utils/active-stars-embed");
+      // logger.info("/embeds/active-stars-embed");
       return { embeds: [embed] };
     } else {
       return { content: "No active stars found" };
