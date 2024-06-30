@@ -27,6 +27,7 @@ async function getF2PWorldsAsync() {
     return f2pworlds;
 }
 
+// TODO break this up into smaller functions, currently it's doing 4 things, gets sm stars, gets f2p stars, filters out sm-f2p stars, converts locations.
 /**
  * Does a httprequest to starminers-map data endpoint
  * @returns {Promise<Array<Star>>} The Starminers called Stars
@@ -80,19 +81,18 @@ async function HttpRequesStarMinersFetchDataAsync() {
             const location = ConvertLocation(star.calledLocation);
             const calledAtDate = new Date(star.calledAt * 1000); // Unix Timestamp to JS Date
 
-
-            result.push(
-                new Star(
-                    world,
-                    tier,
-                    location,
-                    "Starminers - " + foundBy, // foundBy
-                    calledAtDate, // foundAt
-                    new Date(), // updatedAt
-                    calledAtDate // calledAt
-                    // credit - unused? foundAt seems to be used everywhere.
-                )
+            const starObj = new Star(
+                world,
+                tier,
+                location,
+                "Starminers - " + foundBy, // foundBy
+                calledAtDate, // foundAt
+                new Date(), // updatedAt
+                calledAtDate // calledAt
+                // credit - unused? foundAt seems to be used everywhere.
             );
+
+            result.push(starObj);
         }
     }
 

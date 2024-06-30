@@ -1,5 +1,7 @@
 const World = require("../schemas/Word.js");
 
+// TODO format worldTypes into human readable text (e.g. "Members", "PVP", "Quest Speedrunning", etc.)
+// TODO format location into human readable text (e.g. "Germany", "United Kingdom", etc.)
 
 async function HttpGetOSRSWorldsAsync() {
     const worlds = { member: [], free: [] };
@@ -30,7 +32,7 @@ async function HttpGetOSRSWorldsAsync() {
         const playerCount = dataView.getUint16(activity.offset + 2, false); // Read 2 bytes from offset of activity null-byte + 1 byte
         
         // TODO change worldTypes to Enums and add types https://github.com/runelite/api.runelite.net/blob/master/http-service/src/main/java/net/runelite/http/service/worlds/ServiceWorldType.java
-        const world = new World(worldNumber, worldTypes, address, activity, location, playerCount);
+        const world = new World(worldNumber, worldTypes, address.text, activity.text, location, playerCount);
         // console.log(world);
         
         
