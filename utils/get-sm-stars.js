@@ -88,19 +88,23 @@ async function HttpRequesStarMinersFetchDataAsync() {
     return result;
 }
 
-// Convert Starminers name schema into F2P StarHunt, with fallback in case of manual reporting
+/**
+ * Convert Starminers name into F2P StarHunt schema, with fallback in case of manual reporting
+ * @param {string} calledLocation The Called Location as given by Starminers
+ * @returns {string} The Star Location in format of locations.json
+ */
 function ConvertLocation(calledLocation) {
     let res = calledLocation;
 
-    // Fuzzy find calledLocation from locations.json
-    // ref https://www.fusejs.io/api/options.html#iscasesensitive
+    // ref https://www.fusejs.io/api/options.html
     const fuseOptions = {
         includeScore: true,
         shouldSort: true, // Whether to sort the result list, by score. (default: true)
         keys: [ 'fuzzyaliases', 'name' ],
         minMatchCharLength: 2 // default: 1
     };
-
+    
+    // Fuzzy find calledLocation from locations.json
     const fuse = new Fuse(starlocations, fuseOptions);
     fuzzyLocations = fuse.search(calledLocation); // searchPattern is the called Location
 
