@@ -1,7 +1,7 @@
 const { HttpGetOSRSWorldsAsync } = require("../utils/get-osrs-worlds.js");
 const Star = require("../schemas/Star.js");
-
-async function getF2PWorlds() {
+const starlocations = require("../data/locations.json");
+const Fuse = require('fuse.js');
     const osrsworlds = await HttpGetOSRSWorldsAsync().catch(console.error);
     
     let f2pworlds = [];
@@ -75,17 +75,27 @@ async function HttpRequesStarMinersFetchDataAsync() {
     return result;
 }
 
-// TODO Convert Starminers name schema into F2P StarHunt, with fallback in case of manual reporting
+// Convert Starminers name schema into F2P StarHunt, with fallback in case of manual reporting
 function ConvertLocation(calledLocation) {
     let res = calledLocation;
+
     // Fuzzy find calledLocation from locations.json
-    // for (const { value, name } of starlocations) {
-    //     // ...
-    //     if (false) {
-    //         res = name;
-    //         break;
-    //     }
-    // }
+    // ref https://www.fusejs.io/api/options.html#iscasesensitive
+    const fuseOptions = {
+        includeScore: true,
+        shouldSort: true, // Whether to sort the result list, by score. (default: true)
+        keys: [ 'fuzzyaliases', 'name' ],
+        minMatchCharLength: 2 // default: 1
+    };
+
+    const fuse = new Fuse(starlocations, fuseOptions);
+    fuzzyLocations = fuse.search(calledLocation); // searchPattern is the called Location
+
+    if (fuzzyLocations && fuzzyLocations.length >= 1)
+        res = fuzzyLocations[0].item.value; // FuzzyFind is sorted by score, so we can take first
+
+    // console.log("FuzzyFinder input:", calledLocation, "Output:", fuzzyLocations);
+
     return res;
 }
 
