@@ -4,12 +4,14 @@ const World = require("../schemas/Word.js");
 async function HttpGetOSRSWorldsAsync() {
     const worlds = { member: [], free: [] };
 
-    const response = await fetch('http://www.runescape.com/g=oldscape/slr.ws?order=LPWM'); // Replace with your API endpoint
+    const response = await fetch('http://www.runescape.com/g=oldscape/slr.ws?order=LPWM');
     const arrayBuffer = await response.arrayBuffer();
 
-    if (arrayBuffer) throw new Error("Fetch was not sucessful.");
+    if (!arrayBuffer instanceof ArrayBuffer) throw new Error("Fetch was not sucessful.");
 
     const dataView = new DataView(arrayBuffer);
+
+    if (!dataView instanceof DataView) throw new Error("Was not able to convert ArrayBuffer to DataView.");
 
     // Read Metadata
     const length = dataView.getInt32(0); // Reads 4 bytes

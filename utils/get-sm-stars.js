@@ -2,8 +2,14 @@ const { HttpGetOSRSWorldsAsync } = require("../utils/get-osrs-worlds.js");
 const Star = require("../schemas/Star.js");
 const starlocations = require("../data/locations.json");
 const Fuse = require('fuse.js');
+
+/**
+ * Does a Httprequest to get OSRS worlds from rs world api, filters free-to-play worlds.
+ * @returns {Promise<Array<Star>>} The F2P worlds
+ */
+async function getF2PWorldsAsync() {
     const osrsworlds = await HttpGetOSRSWorldsAsync().catch(console.error);
-    
+
     let f2pworlds = [];
     if (!osrsworlds) {
         // manual fallback, as found from StarMiners Map
@@ -16,11 +22,15 @@ const Fuse = require('fuse.js');
             544, 545, 546, 547, 552, 553, 554, 555, 571, 575
         ];
     }
-    
-    f2pworlds = osrsworlds.free.map(x => x.world);
+    else f2pworlds = osrsworlds.free.map(x => x.world);
+
     return f2pworlds;
 }
 
+/**
+ * Does a httprequest to starminers-map data endpoint
+ * @returns {Promise<Array<Star>>} The Starminers called Stars
+ */
 async function HttpRequesStarMinersFetchDataAsync() {
     let result = [];
 
@@ -46,7 +56,7 @@ async function HttpRequesStarMinersFetchDataAsync() {
     });
 
     const data = await response.json();
-    /*
+    /* Example response:
         [{
             "world": 567,
             "location": 6,
@@ -57,21 +67,24 @@ async function HttpRequesStarMinersFetchDataAsync() {
             "tier": 1,
             "maxTime": 1713257177
         }]
-     */ 
+     */
 
-    if (!data) throw new Error("Fetch was not sucessful.");
-    const f2pworlds = await getF2PWorlds();
+    if (Array.isArray(data) && !data.length) throw new Error("Fetch was not sucessful.");
+    const f2pworlds = await getF2PWorldsAsync();
 
     for (var star of data) {
         // Check for Free-to-play worlds
-        if (f2pworlds.includes(star.world)) {            
-            const {world, tier, calledBy: foundBy} = star;
+        if (f2pworlds.includes(star.world)) {
+            // console.log(star)
+            const { world, tier, calledBy: foundBy} = star;
             const location = ConvertLocation(star.calledLocation);
+            const calledAtDate = new Date(star.calledAt * 1000); // Unix Timestamp to JS Date
 
-            result.push(new Star(world,  tier, location, "Starminers - " + foundBy));
+
+            result.push(new Star(world, tier, location, "Starminers - " + foundBy, calledAtDate));
         }
     }
-    
+
     return result;
 }
 
