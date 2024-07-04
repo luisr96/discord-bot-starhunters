@@ -1,11 +1,12 @@
+const Star = require("../schemas/Star.js");
 const db = require("./db.js");
 
 /**
  * Queries the database for a star, given its world
  * @param  {Number} world    The star's world
- * @return {Object || null}  The document from the DB
+ * @return {Star || null}  The document from the DB
  */
-getStarInWorld = async (world) => {
+async function getStarInWorld(world) {
   try {
     const starsCollection = db.getStarsCollection();
     const getStarInWorld = await starsCollection.findOne({ world });
@@ -13,6 +14,6 @@ getStarInWorld = async (world) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 module.exports = { getStarInWorld };
