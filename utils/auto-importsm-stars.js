@@ -31,6 +31,11 @@ async function autoImportSMStars() {
             // save without changing foundAt
             delete star.foundAt;
         }
+        if (starExists && starExists.foundBy !== star.foundBy) {
+            // save without changing foundBy
+            delete star.foundBy;
+            delete star.credit;
+        }
         
         await starsCollection.updateOne(
             { world: star.world },
