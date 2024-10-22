@@ -45,16 +45,6 @@ async function run({ interaction }) {
 
   await interaction.deferReply();
 
-  const isAuth = await isAuthorized(interaction, ["Ranked"]);
-  const anyStarsCalled = (await getAllCalledStars()).length > 0;
-
-  if (!isAuth) {
-    if (anyStarsCalled) {
-      interaction.editReply("Insufficient privileges. Use **/hold** instead");
-      return;
-    }
-  }
-
   const result = await saveStar(
     new ActiveStar(
       world,

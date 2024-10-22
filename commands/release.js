@@ -22,12 +22,6 @@ const data = new SlashCommandBuilder()
 async function run({ interaction }) {
   await interaction.deferReply();
 
-  const isAuth = await isAuthorized(interaction, ["Ranked"]);
-  if (!isAuth) {
-    interaction.editReply("Insufficient privileges");
-    return;
-  }
-
   const world = interaction.options.get("world").value;
 
   const starsCollection = db.getStarsCollection();
